@@ -12,7 +12,7 @@ const fetchMessage = async () => {
   loading.value = 'true';
 
   try {
-    const response = await axios.get("https://backend.paas.samchichester.com/messages");
+    const response = await axios.get("https://backend.paas.samchichester.com");
     message.value = response.data;
   } catch (err) {
     console.error('Error: ', err);
@@ -34,7 +34,7 @@ onMounted(() => {
       <LoadingSpinner />
     </div>
     <div v-else-if="errorMessage" class="text-red-500 text-center">{{ errorMessage }}</div>
-    <div v-else>
+    <div v-else class="text-center">
       {{ message }}
     </div>
   </div>
