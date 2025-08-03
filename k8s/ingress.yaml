@@ -4,9 +4,12 @@ metadata:
   name: sample-app-ingress
   annotations:
     kubernetes.io/ingress.class: traefik
-    traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    traefik.ingress.kubernetes.io/router.tls: "true"
+    cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
+  tls:
+    - hosts:
+        - sample-app.apps.samchichester.com
+      secretName: sample-app-tls
   rules:
     - host: sample-app.apps.samchichester.com
       http:
@@ -18,6 +21,3 @@ spec:
                 name: sample-app
                 port:
                   number: 80
-  tls:
-    - hosts:
-        - sample-app.apps.samchichester.com
